@@ -1,6 +1,20 @@
 package com.sample
 
 import static com.sample.FamilyMovieMain.*;
- 
 
- 
+declare Activity
+	question: String @key
+	respond: String
+end
+
+declare permissionToNextWindow
+
+end
+
+rule "Init"
+	when
+	then
+		Activity a = new Activity("Wybierz kilka");
+		
+end
+

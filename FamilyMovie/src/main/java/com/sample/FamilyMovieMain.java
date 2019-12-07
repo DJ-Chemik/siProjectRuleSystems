@@ -25,11 +25,15 @@ public class FamilyMovieMain {
 	public static int questionBoard(String question, String[] answers) {
 		return JOptionPane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, answers, null);
 	}
+	
+	/*public static void multiplicityQuestion(String question, String[] answers){
+		
+	}*/
     
 	public static void respondBoard(String respond) {
 		String ok[] = {"Ok"};
 		JOptionPane.showOptionDialog(null, respond, "Respond", optionType, messageType[1], null, ok, ok[0]);
 	}
-   
+	  
 
 }
