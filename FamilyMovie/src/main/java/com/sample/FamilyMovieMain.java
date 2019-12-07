@@ -3,6 +3,11 @@ package com.sample;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
 public class FamilyMovieMain {
@@ -22,13 +27,21 @@ public class FamilyMovieMain {
 	private static int messageType[] = {JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, 
 										JOptionPane.QUESTION_MESSAGE, JOptionPane.WARNING_MESSAGE, JOptionPane.ERROR_MESSAGE};
 	
-	public static int questionBoard(String question, String[] answers) {
-		return JOptionPane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, answers, null);
+	public static int questionBoard(String question, String[] options) {
+		
+		return JOptionPane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, options, null);
 	}
 	
-	/*public static void multiplicityQuestion(String question, String[] answers){
-		
-	}*/
+	public static int multiplicityQuestion(String question, ArrayList<String> options){
+		ArrayList<Object> boxes = new ArrayList<>();
+		for (int i = 0; i < options.size(); i++) {
+			boxes.add(new JCheckBox(options.get(i)));
+		}
+		boxes.add(new JButton("Confirm"));
+		Object[] panel = boxes.toArray(); 
+		int result = JOptionPane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, panel, null);
+		return result;
+	}
     
 	public static void respondBoard(String respond) {
 		String ok[] = {"Ok"};

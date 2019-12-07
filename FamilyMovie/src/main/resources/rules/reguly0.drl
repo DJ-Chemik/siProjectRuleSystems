@@ -1,6 +1,7 @@
 package com.sample
 
 import static com.sample.FamilyMovieMain.*;
+import java.util.ArrayList;
 
 declare Activity
 	question: String @key
@@ -14,7 +15,71 @@ end
 rule "Init"
 	when
 	then
-		Activity a = new Activity("Wybierz kilka");
+		String questionContent = "Wybierz kilka";
+		ArrayList<String> options = new ArrayList<>();
+		//options.add("AA");
+		//options.add("BB");
+		//options.add("CC");
+		//options.add("DD");
+		//options.add("EE");
+		//options.add("FF");
+		//options.add("GG");
+		options.add("Take us on an adventure!");
+		options.add("We love to laugh!");
+		options.add("We're big sports fans!");
+		options.add("We have a soft spot for animation!");
+		options.add("We like to sign and dance!");
+		options.add("We're animal lovers!");
+		options.add("We want to be wowed!");
+		
+		//String[] options = {option1, option2, option3, option4, option5, option6, option7};
+		Activity a = new Activity(questionContent);
+		multiplicityQuestion(a.getQuestion(), options);
+		//a.setRespond(options[questionBoard(a.getQuestion(), options)]);
+		insert(a);
 		
 end
 
+rule "A"
+	when 
+		Activity(question == "Wybierz kilka", respond=="A")
+	then
+		respondBoard("Wybra³eœ A");
+end
+rule "B"
+	when 
+		Activity(question == "Wybierz kilka", respond=="B")
+	then
+		respondBoard("Wybra³eœ B");
+end
+
+rule "C"
+	when 
+		Activity(question == "Wybierz kilka", respond=="C")
+	then
+		respondBoard("Wybra³eœ C");
+end
+rule "D"
+	when 
+		Activity(question == "Wybierz kilka", respond=="D")
+	then
+		respondBoard("Wybra³eœ D");
+end
+rule "E"
+	when 
+		Activity(question == "Wybierz kilka", respond=="E")
+	then
+		respondBoard("Wybra³eœ E");
+end
+rule "F"
+	when 
+		Activity(question == "Wybierz kilka", respond=="F")
+	then
+		respondBoard("Wybra³eœ F");
+end
+rule "G"
+	when 
+		Activity(question == "Wybierz kilka", respond=="G")
+	then
+		respondBoard("Wybra³eœ G");
+end
