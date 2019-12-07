@@ -15,15 +15,8 @@ end
 rule "Init"
 	when
 	then
-		String questionContent = "Wybierz kilka";
+		String questionContent = "What type of movie do they feel like watching?";
 		ArrayList<String> options = new ArrayList<>();
-		//options.add("AA");
-		//options.add("BB");
-		//options.add("CC");
-		//options.add("DD");
-		//options.add("EE");
-		//options.add("FF");
-		//options.add("GG");
 		options.add("Take us on an adventure!");
 		options.add("We love to laugh!");
 		options.add("We're big sports fans!");
@@ -40,46 +33,46 @@ rule "Init"
 		
 end
 
-rule "A"
+rule "Take us on an adventure!"
 	when 
-		Activity(question == "Wybierz kilka", respond=="A")
+		Activity(question == "What type of movie do they feel like watching?", respond=="Take us on an adventure!")
 	then
-		respondBoard("Wybra³eœ A");
+		respondBoard("Wybra³eœ Take us on an adventure!");
 end
-rule "B"
+rule "We love to laugh!"
 	when 
-		Activity(question == "Wybierz kilka", respond=="B")
+		Activity(question == "What type of movie do they feel like watching?", respond=="We love to laugh!")
 	then
-		respondBoard("Wybra³eœ B");
+		respondBoard("We love to laugh!");
 end
 
-rule "C"
+rule "We're big sports fans!"
 	when 
-		Activity(question == "Wybierz kilka", respond=="C")
+		Activity(question == "We're big sports fans!", respond=="We're big sports fans!")
 	then
-		respondBoard("Wybra³eœ C");
+		respondBoard("Wybra³eœ We're big sports fans!");
 end
-rule "D"
+rule "We have a soft spot for animation!"
 	when 
-		Activity(question == "Wybierz kilka", respond=="D")
+		Activity(question == "What type of movie do they feel like watching?", respond=="We have a soft spot for animation!")
 	then
-		respondBoard("Wybra³eœ D");
+		respondBoard("Wybra³eœ We have a soft spot for animation!");
 end
-rule "E"
+rule "We like to sign and dance!"
 	when 
-		Activity(question == "Wybierz kilka", respond=="E")
+		Activity(question == "What type of movie do they feel like watching?", respond=="We like to sign and dance!")
 	then
-		respondBoard("Wybra³eœ E");
+		respondBoard("Wybra³eœ We like to sign and dance!");
 end
-rule "F"
+rule "We're animal lovers!"
 	when 
-		Activity(question == "Wybierz kilka", respond=="F")
+		Activity(question == "What type of movie do they feel like watching?", respond=="We're animal lovers!")
 	then
-		respondBoard("Wybra³eœ F");
+		respondBoard("Wybra³eœ We're animal lovers!");
 end
-rule "G"
+rule "We want to be wowed!"
 	when 
-		Activity(question == "Wybierz kilka", respond=="G")
+		Activity(question == "What type of movie do they feel like watching?", respond=="We want to be wowed!")
 	then
-		respondBoard("Wybra³eœ G");
+		respondBoard("Wybra³eœ We want to be wowed!");
 end
