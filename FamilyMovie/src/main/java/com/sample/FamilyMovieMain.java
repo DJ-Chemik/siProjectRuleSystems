@@ -37,7 +37,7 @@ public class FamilyMovieMain{
 	}
 	
 	 
-	public static int multiplicityQuestion(String question, ArrayList<String> options){
+	public static ArrayList<Integer> multiplicityQuestion(String question, ArrayList<String> options){
 		ArrayList<Object> boxes = new ArrayList<>();
 		for (int i = 0; i < options.size(); i++) {
 			boxes.add(new JCheckBox(options.get(i)));
@@ -65,10 +65,9 @@ public class FamilyMovieMain{
 		int x= 0;
 		for (int i = 0; i < results.size(); i++) {
 			System.out.println(options.get(results.get(i)));
-			return results.get(i);
 		}
 		
-		return 0;
+		return results;
 	}
     
 	

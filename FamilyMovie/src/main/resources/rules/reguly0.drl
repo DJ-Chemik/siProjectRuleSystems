@@ -25,12 +25,13 @@ rule "Init"
 		options.add("We're animal lovers!");
 		options.add("We want to be wowed!");
 		
-		//String[] options = {option1, option2, option3, option4, option5, option6, option7};
 		Activity a = new Activity(questionContent);
-		a.setRespond(options.get(multiplicityQuestion(a.getQuestion(), options)));
-		//a.setRespond(options.get(questionBoard(a.getQuestion(), options)));
-		insert(a);
-		
+		ArrayList<Integer> responds = multiplicityQuestion(a.getQuestion(), options);
+		for(int i=0; i<responds.size(); i++){
+			a = new Activity(questionContent);
+			a.setRespond(options.get(	responds.get(i)	));
+			insert(a);
+		}	
 end
 
 rule "Take us on an adventure!"
