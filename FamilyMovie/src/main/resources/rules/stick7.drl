@@ -10,10 +10,132 @@ declare Activity
 end
 
 
-
-rule "We want to be wowed!"
+//!!!! - Czy mo¿na zrobiæ w ten sposób? To nie jest tak bezpoœrednio w diagramie
+rule "We want to be wowed!_1"
 	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We want to be wowed!")
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We want to be wowed!")
 	then
-		respondBoard("Wybra³eœ We want to be wowed!");
+		String questionContent = "What do you want show them?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("One of the greatest movies ever made");
+		options.add("Something great from my childhood");
+		
+		Activity a = new Activity(questionContent);
+		ArrayList<Integer> responds = multiplicityQuestion(a.getQuestion(), options);
+		for(int i=0; i<responds.size(); i++){
+			a = new Activity(questionContent);
+			a.setRespond(options.get(	responds.get(i)	));
+			insert(a);
+		}	
+end
+
+//////!!!!!!!
+rule "One of the greatest movies ever made"
+	when 
+		Activity(question == "What do you want show them?", 
+				 respond=="One of the greatest movies ever made")
+	then
+		respondBoard("Proposition for you: The Princess Bride");
+		
+		String questionContent = "Some doubts about \"The Princess Bride\""; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Ok, I want the GREATEST movie ever made");
+		options.add("No, this is a good proposition");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+	
+end
+
+rule "Ok, I want the GREATEST movie ever made"
+	when
+		Activity(question == "Some doubts about \"The Princess Bride\"", 
+				 respond=="Ok, I want the GREATEST movie ever made")
+	then
+		respondBoard("Proposition for you: Star Wars, Episode 4: A New Hope");
+end
+
+rule "Something great from my childhood"
+	when 
+		Activity(question == "What do you want show them?", 
+				 respond=="Something great from my childhood")
+	then
+		String questionContent = "Is good dialogue a must?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("No");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);		
+end
+
+rule "7_Yes_1"
+	when
+		Activity(question == "Is good dialogue a must?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: E.T. The Extra Terrestrial");
+end
+
+rule "7_No_1"
+	when
+		Activity(question == "Is good dialogue a must?", 
+				 respond=="No")
+	then
+		respondBoard("Proposition for you: Fantasia");
+		
+		String questionContent = "Some doubts about \"Fantasia\""; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("How old do you think I am?");
+		options.add("No, it is ok");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "How old do you think I am?"
+	when
+		Activity(question == "Some doubts about \"Fantasia\"", 
+				 respond=="How old do you think I am?")
+	then
+		respondBoard("Proposition for you: Willy Wonka & The Chocolate Factory");
+end
+
+rule "We want to be wowed!_2"
+	when 
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We want to be wowed!")
+	then
+		String questionContent = "Do they like magic";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("Kinda, but they want more action");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "7_Yes_2"
+	when 
+		Activity(question == "Do they like magic", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Harry Potter Series");
+end
+
+rule "Kinda, but they want more action"
+	when 
+		Activity(question == "Do they like magic", 
+				 respond=="Kinda, but they want more action")
+	then
+		respondBoard("Proposition for you: The Lord of The Rings Series");
 end
