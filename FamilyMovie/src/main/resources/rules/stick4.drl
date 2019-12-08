@@ -11,14 +11,14 @@ declare Activity
 	respond: String
 end
 
-rule "We have a soft spot for animation!"
+rule "We have a soft spot for animation!_1"
 	when 
 		Activity(question == "What type of movie do they feel like watching?", respond=="We have a soft spot for animation!")
 	then
 		String questionContent = "Do you enjoy hearing your kids sing the same song over and over?";
 		ArrayList<String> options = new ArrayList<>();
 		options.add("A little variety would be nice");
-		options.add("Yes!");
+		options.add("Yes");
 		
 		Activity a = new Activity(questionContent);
 		int respond=questionBoard(a.getQuestion(), options);
@@ -34,10 +34,125 @@ rule "A little variety would be nice"
 		respondBoard("Proposition for you: Alladin");
 end
 
-rule "Yes!"
+rule "Yes_1"
 	when
 		Activity(question == "Do you enjoy hearing your kids sing the same song over and over?", 
-				 respond == "Yes!")
+				 respond == "Yes")
 	then
 		respondBoard("Proposition for you: Frozen");
+end
+
+rule "We have a soft spot for animation!_2"
+	when 
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We have a soft spot for animation!")
+	then
+		String questionContent = "How about Pixar?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("No, Disney Classic");
+		options.add("Yes");
+		options.add("No, and not Disney either");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "No, Disney Classic"
+	when
+		Activity(question == "How about Pixar?", 
+				 respond=="No, Disney Classic")
+	then
+		String questionContent = "Would you like cute mice to save the day?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("No");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "Yes_2"
+	when
+		Activity(question == "How about Pixar?", 
+				 respond=="Yes")
+	then
+		String questionContent = "Did Star Command send you on a mission?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("No, the old guy with the balloons did");
+		options.add("Yes");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "No, and not Disney either"
+	when
+		Activity(question == "How about Pixar?", 
+				 respond=="No, and not Disney either")
+	then
+		String questionContent = "Would you enjoy a Don Bluth classic?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("Double Yes!");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+/////////////////////////////////////////////////////
+
+rule "Yes_3"
+	when
+		Activity(question == "Would you like cute mice to save the day?", 
+				 respond== "Yes")
+	then
+		respondBoard("Proposition for you: The Rescuers");
+end
+
+rule "No"
+	when
+		Activity(question == "Would you like cute mice to save the day?", 
+				 respond== "No")
+	then
+		respondBoard("Proposition for you: Beauty and the Beast");
+end
+
+rule "No, the old guy with the balloons did"
+	when
+		Activity(question == "Did Star Command send you on a mission?", 
+				 respond== "No, the old guy with the balloons did")
+	then
+		respondBoard("Proposition for you: Up");
+end
+
+rule "Yes_4"
+	when
+		Activity(question == "Did Star Command send you on a mission?", 
+				 respond== "Yes")
+	then
+		respondBoard("Proposition for you: Toy Story");
+end
+
+rule "Yes_5"
+	when
+		Activity(question == "Would you enjoy a Don Bluth classic?", 
+				 respond== "Yes")
+	then
+		respondBoard("Proposition for you: All Dogs Go To Heaven");
+end
+
+rule "Double Yes!"
+	when
+		Activity(question == "Would you enjoy a Don Bluth classic?", 
+				 respond== "Double Yes!")
+	then
+		respondBoard("Proposition for you: The Land Before Time");
 end
