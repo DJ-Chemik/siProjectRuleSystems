@@ -1,7 +1,5 @@
-//created on: 2019-12-08
 package com.sample
 
-//list any import classes here.
 import static com.sample.FamilyMovieMain.*;
 import java.util.ArrayList;
 
@@ -12,10 +10,69 @@ declare Activity
 end
 
 
-rule "We like to sign and dance!"
+rule "We like to sign and dance!_1"
 	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We like to sign and dance!")
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We like to sign and dance!")
 	then
-		respondBoard("Wybra³eœ We like to sign and dance!");
+		String questionContent = "Are the hills alive?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("No, but lions and scarecrows seem to be");
+		options.add("Yes");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "No, but lions and scarecrows seem to be"
+	when
+		Activity(question == "Are the hills alive?", 
+				 respond=="No, but lions and scarecrows seem to be")
+	then
+		respondBoard("Proposition for you: The Wizard of Oz");
+end
+
+rule "5_Yes_1"
+	when
+		Activity(question == "Are the hills alive?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: The Sound of Music");
+end
+
+///////////////////////////////////////////////
+
+rule "We like to sign and dance!_2"
+	when 
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We like to sign and dance!")
+	then
+		String questionContent = "Is it the holidays?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Halloween counts!");
+		options.add("Yes");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "Halloween counts!"
+	when
+		Activity(question == "Is it the holidays?", 
+				 respond=="Halloween counts!")
+	then
+		respondBoard("Proposition for you: The Nightmare Before Christmas");
+end
+
+rule "5_Yes_2"
+	when
+		Activity(question == "Is it the holidays??", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Scrooge (Albert Finney Version)");
 end
 

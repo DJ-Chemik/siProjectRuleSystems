@@ -1,7 +1,5 @@
-//created on: 2019-12-08
 package com.sample
 
-//list any import classes here.
 import static com.sample.FamilyMovieMain.*;
 import java.util.ArrayList;
 
