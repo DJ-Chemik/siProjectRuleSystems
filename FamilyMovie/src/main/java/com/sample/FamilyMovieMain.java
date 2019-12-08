@@ -63,9 +63,9 @@ public class FamilyMovieMain{
 				
 		pane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, panel, null);
 		int x= 0;
-		for (int i = 0; i < results.size(); i++) {
+		/*for (int i = 0; i < results.size(); i++) {
 			System.out.println(options.get(results.get(i)));
-		}
+		}*/
 		
 		return results;
 	}

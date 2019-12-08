@@ -12,8 +12,53 @@ end
 
 rule "We're animal lovers!"
 	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We're animal lovers!")
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We're animal lovers!")
 	then
-		respondBoard("Wybra³eœ We're animal lovers!");
+		String questionContent = "Do you feel like crying?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("Only if it has a happy ending");
+		options.add("Only if it's at the beginning and I have plenty of time to recover");
+		options.add("No");
+		
+		Activity a = new Activity(questionContent);
+		ArrayList<Integer> responds = multiplicityQuestion(a.getQuestion(), options);
+		for(int i=0; i<responds.size(); i++){
+			a = new Activity(questionContent);
+			a.setRespond(options.get(	responds.get(i)	));
+			insert(a);
+		}
 end
 
+rule "6_Yes_1"
+	when
+		Activity(question == "Do you feel like crying?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Turner & Hooch");
+end
+
+rule "Only if it has a happy ending"
+	when
+		Activity(question == "Do you feel like crying?", 
+				 respond=="Only if it has a happy ending")
+	then
+		respondBoard("Proposition for you: The Lion King");
+end
+
+rule "Only if it's at the beginning and I have plenty of time to recover"
+	when
+		Activity(question == "Do you feel like crying?", 
+				 respond=="Only if it's at the beginning and I have plenty of time to recover")
+	then
+		respondBoard("Proposition for you: Bambi");
+end
+
+rule "6_No_1"
+	when
+		Activity(question == "Do you feel like crying?", 
+				 respond=="No")
+	then
+		respondBoard("Proposition for you: Jumanji");
+end
