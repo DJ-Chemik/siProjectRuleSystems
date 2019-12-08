@@ -30,9 +30,10 @@ public class FamilyMovieMain{
 	private static int messageType[] = {JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, 
 										JOptionPane.QUESTION_MESSAGE, JOptionPane.WARNING_MESSAGE, JOptionPane.ERROR_MESSAGE};
 	
-	public static int questionBoard(String question, String[] options) {
+	public static int questionBoard(String question, ArrayList<String> options) {
 		
-		return JOptionPane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, options, null);
+		Object[] strings = options.toArray();
+		return JOptionPane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, strings, null);
 	}
 	
 	 
@@ -61,8 +62,10 @@ public class FamilyMovieMain{
 		
 				
 		pane.showOptionDialog(null, question, "It's a question to you", optionType, messageType[2], null, panel, null);
+		int x= 0;
 		for (int i = 0; i < results.size(); i++) {
 			System.out.println(options.get(results.get(i)));
+			return results.get(i);
 		}
 		
 		return 0;
