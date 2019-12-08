@@ -12,7 +12,161 @@ end
 
 rule "We're big sports fans!"
 	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We're big sports fans!")
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We're big sports fans!")
 	then
-		respondBoard("Wybra³eœ We're big sports fans!");
+		String questionContent = "What's your sport of choice?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Football");
+		options.add("Hockey");
+		options.add("Baseball");
+		options.add("Basketball");
+		
+		Activity a = new Activity(questionContent);
+		ArrayList<Integer> responds = multiplicityQuestion(a.getQuestion(), options);
+		for(int i=0; i<responds.size(); i++){
+			a = new Activity(questionContent);
+			a.setRespond(options.get(	responds.get(i)	));
+			insert(a);
+		}	
+end
+
+rule "Baseball"
+	when
+		Activity(question == "What's your sport of choice?", 
+				 respond=="Baseball")
+	then
+		respondBoard("Proposition for you: The Sandlot");
+		
+		String questionContent = "Some doubts about \"The Sandlot\""; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Wendy Peffercorn is a bit much");
+		options.add("No");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "Wendy Peffercorn is a bit much"
+	when
+		Activity(question == "Some doubts about \"The Sandlot\"", 
+				 respond=="Wendy Peffercorn is a bit much")
+	then
+		respondBoard("Proposition for you: Rookie of The Year");
+		
+		String questionContent = "Some doubts about \"Rookie of The Year\""; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Now my kids are purposely slipping on baseballs");
+		options.add("No");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "Now my kids are purposely slipping on baseballs"
+	when
+		Activity(question == "Some doubts about \"Rookie of The Year\"", 
+				 respond=="Now my kids are purposely slipping on baseballs")
+	then
+		respondBoard("Proposition for you: Little Big League");
+end
+
+rule "Hockey"
+	when
+		Activity(question == "What's your sport of choice?", 
+				 respond=="Hockey")
+	then
+		String questionContent = "Interested in a true story?"; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("Nope, just truly awesome");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "3_Yes_1"
+	when
+		Activity(question == "Interested in a true story?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Miracle");
+end
+
+rule "Nope, just truly awesome"
+	when
+		Activity(question == "Interested in a true story?", 
+				 respond=="Nope, just truly awesome")
+	then
+		respondBoard("Proposition for you: The Mighty Ducks");
+end
+
+rule "Football"
+	when
+		Activity(question == "What's your sport of choice?", 
+				 respond=="Football")
+	then
+		String questionContent = "Want to take a \"feels\" trip?"; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("No, Let's keep it light");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "3_Yes_2"
+	when
+		Activity(question == "Want to take a \"feels\" trip?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Remember The Titans");
+end
+
+rule "No, Let's keep it light"
+	when
+		Activity(question == "Want to take a \"feels\" trip?", 
+				 respond=="No, Let's keep it light")
+	then
+		respondBoard("Proposition for you: Little Giants");
+end
+
+rule "Basketball"
+	when
+		Activity(question == "What's your sport of choice?", 
+				 respond=="Basketball")
+	then
+		String questionContent = "Are there rules that say a dog can't play basketball?"; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("No");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "3_Yes_3"
+	when
+		Activity(question == "Are there rules that say a dog can't play basketball?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Hoosiers");
+end
+
+rule "3_No_1"
+	when
+		Activity(question == "Are there rules that say a dog can't play basketball?", 
+				 respond=="No")
+	then
+		respondBoard("Proposition for you: Air Bud");
 end
