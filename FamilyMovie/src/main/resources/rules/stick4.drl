@@ -34,7 +34,7 @@ rule "A little variety would be nice"
 		respondBoard("Proposition for you: Alladin");
 end
 
-rule "Yes_1"
+rule "4_Yes_1"
 	when
 		Activity(question == "Do you enjoy hearing your kids sing the same song over and over?", 
 				 respond == "Yes")
@@ -75,7 +75,7 @@ rule "No, Disney Classic"
 		insert(a);
 end
 
-rule "Yes_2"
+rule "4_Yes_2"
 	when
 		Activity(question == "How about Pixar?", 
 				 respond=="Yes")
@@ -109,7 +109,7 @@ end
 
 /////////////////////////////////////////////////////
 
-rule "Yes_3"
+rule "4_Yes_3"
 	when
 		Activity(question == "Would you like cute mice to save the day?", 
 				 respond== "Yes")
@@ -117,7 +117,7 @@ rule "Yes_3"
 		respondBoard("Proposition for you: The Rescuers");
 end
 
-rule "No"
+rule "4_No"
 	when
 		Activity(question == "Would you like cute mice to save the day?", 
 				 respond== "No")
@@ -133,7 +133,7 @@ rule "No, the old guy with the balloons did"
 		respondBoard("Proposition for you: Up");
 end
 
-rule "Yes_4"
+rule "4_Yes_4"
 	when
 		Activity(question == "Did Star Command send you on a mission?", 
 				 respond== "Yes")
@@ -141,7 +141,7 @@ rule "Yes_4"
 		respondBoard("Proposition for you: Toy Story");
 end
 
-rule "Yes_5"
+rule "4_Yes_5"
 	when
 		Activity(question == "Would you enjoy a Don Bluth classic?", 
 				 respond== "Yes")

@@ -70,7 +70,7 @@ end
 
 rule "5_Yes_2"
 	when
-		Activity(question == "Is it the holidays??", 
+		Activity(question == "Is it the holidays?", 
 				 respond=="Yes")
 	then
 		respondBoard("Proposition for you: Scrooge (Albert Finney Version)");
