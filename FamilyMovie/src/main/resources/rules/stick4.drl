@@ -1,0 +1,43 @@
+//created on: 2019-12-08
+package com.sample
+
+//list any import classes here.
+import static com.sample.FamilyMovieMain.*;
+import java.util.ArrayList;
+
+
+declare Activity
+	question: String @key
+	respond: String
+end
+
+rule "We have a soft spot for animation!"
+	when 
+		Activity(question == "What type of movie do they feel like watching?", respond=="We have a soft spot for animation!")
+	then
+		String questionContent = "Do you enjoy hearing your kids sing the same song over and over?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("A little variety would be nice");
+		options.add("Yes!");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "A little variety would be nice"
+	when
+		Activity(question == "Do you enjoy hearing your kids sing the same song over and over?", 
+				 respond == "A little variety would be nice")
+	then
+		respondBoard("Proposition for you: Alladin");
+end
+
+rule "Yes!"
+	when
+		Activity(question == "Do you enjoy hearing your kids sing the same song over and over?", 
+				 respond == "Yes!")
+	then
+		respondBoard("Proposition for you: Frozen");
+end

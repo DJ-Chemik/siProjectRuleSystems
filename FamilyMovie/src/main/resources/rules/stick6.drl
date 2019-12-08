@@ -1,0 +1,21 @@
+//created on: 2019-12-08
+package com.sample
+
+//list any import classes here.
+import static com.sample.FamilyMovieMain.*;
+import java.util.ArrayList;
+
+
+declare Activity
+	question: String @key
+	respond: String
+end
+
+
+rule "We're animal lovers!"
+	when 
+		Activity(question == "What type of movie do they feel like watching?", respond=="We're animal lovers!")
+	then
+		respondBoard("Wybra³eœ We're animal lovers!");
+end
+

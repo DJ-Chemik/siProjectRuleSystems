@@ -34,51 +34,9 @@ rule "Init"
 		}	
 end
 
-rule "Take us on an adventure!"
-	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="Take us on an adventure!")
-	then
-		respondBoard("Wybra³eœ Take us on an adventure!");
-end
 
-rule "We love to laugh!"
-	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We love to laugh!")
-	then
-		respondBoard("Wybra³eœ We love to laugh!");
-end
 
-rule "We're big sports fans!"
-	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We're big sports fans!")
-	then
-		respondBoard("Wybra³eœ We're big sports fans!");
-end
 
-rule "We have a soft spot for animation!"
-	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We have a soft spot for animation!")
-	then
-		respondBoard("Wybra³eœ We have a soft spot for animation!");
-end
 
-rule "We like to sign and dance!"
-	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We like to sign and dance!")
-	then
-		respondBoard("Wybra³eœ We like to sign and dance!");
-end
 
-rule "We're animal lovers!"
-	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We're animal lovers!")
-	then
-		respondBoard("Wybra³eœ We're animal lovers!");
-end
 
-rule "We want to be wowed!"
-	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We want to be wowed!")
-	then
-		respondBoard("Wybra³eœ We want to be wowed!");
-end
