@@ -11,7 +11,116 @@ end
 
 rule "We love to laugh!"
 	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="We love to laugh!")
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="We love to laugh!")
 	then
-		respondBoard("Wybra³eœ We love to laugh!");
+		String questionContent = "What's your family's sense of humor?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Served with a side of values");
+		options.add("Dark");
+		options.add("Bright & cheery");
+				
+		Activity a = new Activity(questionContent);
+		ArrayList<Integer> responds = multiplicityQuestion(a.getQuestion(), options);
+		for(int i=0; i<responds.size(); i++){
+			a = new Activity(questionContent);
+			a.setRespond(options.get(	responds.get(i)	));
+			insert(a);
+		}
+end
+
+rule "Served with a side of values"
+	when
+		Activity(question == "What's your family's sense of humor?", 
+				 respond=="Served with a side of values")
+	then		
+		String questionContent = "Macaulay Culkin: co-starring or headline?"; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Supporting Role");
+		options.add("Star of the show");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "Supporting Role"
+	when
+		Activity(question == "Macaulay Culkin: co-starring or headline?", 
+				 respond=="Supporting Role")
+	then		
+		respondBoard("Proposition for you: Uncle Buck");
+end
+
+rule "Star of the show"
+	when
+		Activity(question == "Macaulay Culkin: co-starring or headline?", 
+				 respond=="Star of the show")
+	then		
+		respondBoard("Proposition for you: Home Alone");
+end
+
+rule "Dark"
+	when
+		Activity(question == "What's your family's sense of humor?", 
+				 respond=="Dark")
+	then		
+		String questionContent = "The more bad jokes the better?"; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("We'd like a bit of slapstick");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "2_Yes_1"
+	when
+		Activity(question == "The more bad jokes the better?", 
+				 respond=="Yes")
+	then		
+		respondBoard("Proposition for you: The Addams Family");
+end
+
+rule "We'd like a bit of slapstick"
+	when
+		Activity(question == "The more bad jokes the better?", 
+				 respond=="We'd like a bit of slapstick")
+	then		
+		respondBoard("Proposition for you: Ghostbusters");
+end
+
+rule "Bright & cheery"
+	when
+		Activity(question == "What's your family's sense of humor?", 
+				 respond=="Bright & cheery")
+	then		
+		String questionContent = "Do you speak squirrel?"; 
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("We're still learning");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "2_Yes_2"
+	when
+		Activity(question == "Do you speak squirrel?", 
+				 respond=="Yes")
+	then		
+		respondBoard("Proposition for you: The Emperor's New Groove");
+end
+
+rule "We're still learning"
+	when
+		Activity(question == "Do you speak squirrel?", 
+				 respond=="We're still learning")
+	then		
+		respondBoard("Proposition for you: Ice Age");
 end
