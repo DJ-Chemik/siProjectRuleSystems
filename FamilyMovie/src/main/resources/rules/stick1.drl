@@ -9,9 +9,130 @@ declare Activity
 	respond: String
 end
 
-rule "Take us on an adventure!"
+rule "Take us on an adventure!_1"
 	when 
-		Activity(question == "What type of movie do they feel like watching?", respond=="Take us on an adventure!")
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="Take us on an adventure!")
 	then
-		respondBoard("Wybra³eœ Take us on an adventure!");
+		String questionContent = "Can they handle action scenes?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("No");
+		options.add("Yes");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
 end
+
+rule "1_No_1"
+	when 
+		Activity(question == "Can they handle action scenes?", 
+				 respond=="No")
+	then
+		respondBoard("Proposition for you: Wall-E");
+end
+
+rule "1_Yes_1"
+	when 
+		Activity(question == "Can they handle action scenes?", 
+				 respond=="Yes")
+	then
+		String questionContent = "Are they easily spoked?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("They can take it");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
+end
+
+rule "1_Yes_2"
+	when 
+		Activity(question == "Are they easily spoked?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: The Goonies");
+end
+
+rule "They can take it"
+	when 
+		Activity(question == "Are they easily spoked?", 
+				 respond=="They can take it")
+	then
+		respondBoard("Proposition for you: Indiana Jones: Raiders of the Lost Ark");
+end
+
+
+
+rule "Take us on an adventure!_2"
+	when 
+		Activity(question == "What type of movie do they feel like watching?", 
+				 respond=="Take us on an adventure!")
+	then
+		String questionContent = "In the mood for some time travel?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("We prefer alternate worlds");
+		options.add("Only if it's chronological");
+		
+		Activity a = new Activity(questionContent);
+		ArrayList<Integer> responds = multiplicityQuestion(a.getQuestion(), options);
+		for(int i=0; i<responds.size(); i++){
+			a = new Activity(questionContent);
+			a.setRespond(options.get(	responds.get(i)	));
+			insert(a);
+		}	
+end
+
+rule "1_Yes_3"
+	when 
+		Activity(question == "In the mood for some time travel?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Back to the Future");
+end
+
+rule "Only if it's chronological"
+	when 
+		Activity(question == "In the mood for some time travel?", 
+				 respond=="Only if it's chronological")
+	then
+		respondBoard("Proposition for you: Forrest Gump");
+end
+
+rule "We prefer alternate worlds"
+	when 
+		Activity(question == "In the mood for some time travel?", 
+				 respond=="We prefer alternate worlds")
+	then
+		String questionContent = "Do your kids like Looney Tunes?";
+		ArrayList<String> options = new ArrayList<>();
+		options.add("Yes");
+		options.add("Sure, but they'd like to see something different, too");
+		
+		Activity a = new Activity(questionContent);
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);	
+		
+end
+
+rule "1_Yes_4"
+	when 
+		Activity(question == "Do your kids like Looney Tunes?", 
+				 respond=="Yes")
+	then
+		respondBoard("Proposition for you: Who Framed Roger Rabbit?");
+end
+
+rule "Sure, but they'd like to see something different, too"
+	when 
+		Activity(question == "Do your kids like Looney Tunes?", 
+				 respond=="Sure, but they'd like to see something different, too")
+	then
+		respondBoard("Proposition for you: Ferngully: The Last Rainforest");
+end
+
