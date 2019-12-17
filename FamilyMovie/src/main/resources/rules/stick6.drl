@@ -23,12 +23,9 @@ rule "We're animal lovers!"
 		options.add("No");
 		
 		Activity a = new Activity(questionContent);
-		ArrayList<Integer> responds = multiplicityQuestion(a.getQuestion(), options);
-		for(int i=0; i<responds.size(); i++){
-			a = new Activity(questionContent);
-			a.setRespond(options.get(	responds.get(i)	));
-			insert(a);
-		}
+		int respond=questionBoard(a.getQuestion(), options);
+		a.setRespond(options.get(respond));
+		insert(a);
 end
 
 rule "6_Yes_1"
